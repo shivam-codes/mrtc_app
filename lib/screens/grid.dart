@@ -39,7 +39,6 @@ class _gridState extends State<grid> {
       img: "assets/image/vacancy.png",
     page: "/job"
   );
-
   @override
   Widget build(BuildContext context) {
     List<Item> mylist = [item1, item2, item3, item4, item5, item6];

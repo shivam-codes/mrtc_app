@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mrtc/aboutus.dart';
-import 'layout.dart';
-import 'menubar.dart';
-import 'tracking.dart';
-import 'dashboard.dart';
-import 'service.dart';
-import 'job.dart';
-import 'claim.dart';
-import 'complain.dart';
-import 'feedback.dart';
-import 'splash.dart';
-import 'settings.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'screens/aboutus.dart';
+import 'screens/menubar.dart';
+import 'screens/tracking.dart';
+import 'screens/dashboard.dart';
+import 'screens/service.dart';
+import 'screens/job.dart';
+import 'screens/claim.dart';
+import 'screens/complain.dart';
+import 'screens/feedback.dart';
+import 'screens/splash.dart';
+import 'screens/settings.dart';
 void main() {
   runApp(MyApp());
 }
@@ -20,29 +20,29 @@ void main() {
  }
 
  class _MyAppState extends State<MyApp> {
+
    @override
    Widget build(BuildContext context) {
      return MaterialApp(
        debugShowCheckedModeBanner: false,
         // builder: (context, child) => BaseWidget(child: child!),
-         initialRoute: '/splash',
+         initialRoute: '/',
          routes: {
-         '/' : (context) => layout(),
+         '/' : (context) => Dashboard(),
            '/tracking' : (context) => tracking(),
            '/service' : (context) => service(),
            '/claim' : (context) => claim(),
            '/complain' : (context) => complain(),
            '/feedback' : (context) => feedback(),
            '/job' : (context) => job(),
-           '/splash' : (context) => splash(),
+           //'/splash' : (context) => splash(),
            '/aboutus' : (context) => aboutus(),
            '/settings' : (context) => settings(),
            '/feedback' : (context) => feedback(),
          },
          theme: ThemeData(
-           primaryColor: Color(0xffffe6e6)
+           primaryColor: Color(0xffffe6e6),
          ),
-        // home: layout(),
      );
    }
  }

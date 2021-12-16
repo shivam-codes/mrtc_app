@@ -1,3 +1,4 @@
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'menubar.dart';
@@ -10,12 +11,42 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final GlobalKey _scaffoldkey = GlobalKey();
+  final _scaffoldkey = new GlobalKey<ScaffoldState>();
+  DateTime pre_backpres = DateTime.now();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
-      key: _scaffoldkey,
+    return WillPopScope(
+        onWillPop: () async {
+          if(_scaffoldkey.currentState!.isDrawerOpen)
+            {
+              Navigator.of(context).pop();
+              return false;
+            }
+          final timegap = DateTime.now().difference(pre_backpres);
+          final cantexit = timegap >= Duration(seconds: 2);
+          pre_backpres = DateTime.now();
+          if(cantexit) {
+            final snack = SnackBar(
+              content: Text('Press Back button again to Exit'),
+              duration: Duration(seconds: 2),);
+            ScaffoldMessenger.of(context).showSnackBar(snack);
+            return false;
+          }else{
+            return true;
+          }
+        },
+        child: Scaffold(
+            key: _scaffoldkey,
+        drawer: NavDrawer(route: '/',),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(''),
+          actions: <Widget>[
+            Image(image: AssetImage("assets/image/logo.png"),
+              height: 55,)
+          ],
+        ),
       backgroundColor: Color(0xffeaeaea),
       body: Stack(
         children: <Widget>[
@@ -26,6 +57,14 @@ class _DashboardState extends State<Dashboard> {
               decoration: BoxDecoration(
                 color: Color(0xffe64241),
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15.0), bottomRight: Radius.circular(15),),
+                image: DecorationImage(
+                    image: AssetImage('assets/image/bgtrans2.jpg'),
+                    fit: BoxFit.cover,
+                   colorFilter: ColorFilter.mode(
+                       Color(0xffe64241).withOpacity(0.7),
+                       BlendMode.darken
+                   )
+                )
               ),
               child:Column(
               children: <Widget>[
@@ -55,7 +94,7 @@ class _DashboardState extends State<Dashboard> {
                "Dashboard",
              style: GoogleFonts.openSans(
                textStyle:TextStyle(
-               color: Colors.black,
+               color: Colors.white,
                  fontSize: size.width*0.07,
                  fontWeight: FontWeight.bold,
              ),
@@ -74,6 +113,6 @@ class _DashboardState extends State<Dashboard> {
        ),
     ]
       )
-    );
+      ) );
   }
 }

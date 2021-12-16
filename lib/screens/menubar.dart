@@ -1,7 +1,9 @@
-//import 'dart:js';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:io';
+
 
 class NavDrawer extends StatelessWidget {
   final String route;
@@ -18,28 +20,31 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Center(child:
-             Text(
-              '',
-              style: GoogleFonts.openSans(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                )
-              ),
-             )
+            Image(image: AssetImage('assets/image/logo.png'),
+            fit: BoxFit.scaleDown,
+            )
             ),
             decoration: BoxDecoration(
                 color: Color(0xffffe6e6),
-                image: DecorationImage(
-                    fit: BoxFit.scaleDown,
-                    image: AssetImage('assets/image/logo.png'))),
-          ),
+               /* image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/image/bgtrans1.png'),
+                    colorFilter: ColorFilter.mode(
+                        Color(0xffe64241).withOpacity(0.7),
+                        BlendMode.darken
+                    )
+                    )*/
+                )
+                    ),
+
           ListTile(
             leading: Icon(Icons.input),
             title: Text('Dashboard'),
             onTap: () => {
               if(isCurrent != '/')
-                Navigator.pushNamed(context, '/')
+                {
+                  Navigator.pushReplacementNamed(context, '/')
+                }
               else
                 Navigator.pop(context)
             },
@@ -48,36 +53,47 @@ class NavDrawer extends StatelessWidget {
             leading: Icon(Icons.add_location_sharp),
             title: Text('Tracking'),
             onTap: () => {
-              if(isCurrent != '/tracking')
+              if(isCurrent == '/')
               Navigator.pushNamed(context, '/tracking')
-            else
+            else if(isCurrent == '/tracking')
               Navigator.pop(context)
+              else
+                Navigator.pushReplacementNamed(context, '/tracking')
 
          },
     ),
           ListTile(
             leading: Icon(Icons.business_center),
             title: Text('About Us'),
-            onTap: () => { if(isCurrent != '/aboutus')
-              Navigator.pushNamed(context, '/aboutus')
-            else
-              Navigator.pop(context)},
+            onTap: () => { if(isCurrent == '/')
+                Navigator.pushNamed(context, '/aboutus')
+               else if(isCurrent == '/aboutus')
+                Navigator.pop(context)
+               else
+                Navigator.pushReplacementNamed(context, '/aboutus')
+    }
           ),
           ListTile(
             leading: Icon(Icons.border_color),
             title: Text('Feedback'),
-            onTap: () => { if(isCurrent != '/feedback')
+            onTap: () =>
+            { if(isCurrent == '/')
               Navigator.pushNamed(context, '/feedback')
             else
-              Navigator.pop(context)},
-          ),
+              if(isCurrent == '/feedback')
+                Navigator.pop(context)
+              else
+                Navigator.pushReplacementNamed(context, '/feedback')
+            }),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () => { if(isCurrent != '/settings')
+            onTap: () => { if(isCurrent == '/')
               Navigator.pushNamed(context, '/settings')
-            else
-              Navigator.pop(context)},
+            else if(isCurrent == '/settings')
+                Navigator.pop(context)
+              else
+                Navigator.pushReplacementNamed(context, '/settings')},
           ),
         ],
       ),

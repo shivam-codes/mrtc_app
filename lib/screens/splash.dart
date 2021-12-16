@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+/*import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'layout.dart';
 import 'dart:async';
 
 class splash extends StatefulWidget {
@@ -11,29 +10,32 @@ class splash extends StatefulWidget {
 class _splashState extends State<splash> {
   @override
   void initState() {
-    super.initState();
-    Timer(Duration(seconds: 3), () => Navigator.of(context).pushReplacementNamed('/'));
+   super.initState();
+   _navigatedash();
+  }
+  _navigatedash() async {
+    await Future.delayed(Duration(milliseconds: 1500),() {});
+    Navigator.pushReplacementNamed(context,'/');
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
+    var size = MediaQuery.of(context).size;
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [Color(0xffFFA3A3), Color(0xffFFE4E4)]
-            )
-          ),
-        child:Column(
+          )
+      ),
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/image/logo.png',),
+            Image.asset('assets/image/logo.png', width: size.width*0.7,),
           SizedBox(
             height: 20,
           ),
-          Text('Welcome', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),),
+        //  Text('WELCOME', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, letterSpacing: 2.0, color: Colors.black, textBaseline: null),),
           //SizedBox(
            // height: 50,
           //),
@@ -42,8 +44,8 @@ class _splashState extends State<splash> {
             //child: Text('Made by \n INFINITY', style: TextStyle(fontSize: 12, color: Color(0xff727272), fontFamily: 'OpenSans'),))
           //]),
       ]),
-      )
-      )
-    );
+      );
+
   }
 }
+*/

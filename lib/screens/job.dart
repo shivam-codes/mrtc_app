@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'layout.dart';
 import 'menubar.dart';
-class complain extends StatefulWidget {
+class job extends StatefulWidget {
   @override
-  _complainState createState() => _complainState();
+  _jobState createState() => _jobState();
 }
 
-class _complainState extends State<complain> {
+class _jobState extends State<job> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: NavDrawer(route: '/claim',),
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Complaint"),
+          title: Text("Apply"),
         ),
         body: Center(
           child: Text('Page under \nconstruction', style: TextStyle(
