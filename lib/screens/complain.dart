@@ -67,11 +67,8 @@ class _complainState extends State<complain> {
     var top = 6.0;
     return GestureDetector(
         onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
-
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
+      FocusManager.instance.primaryFocus!.unfocus();
+      new TextEditingController().clear();
     },
     child:Scaffold(
         drawer: NavDrawer(route: '/complaint',),

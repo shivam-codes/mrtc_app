@@ -1,4 +1,4 @@
-/*import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -15,7 +15,8 @@ class _splashState extends State<splash> {
   }
   _navigatedash() async {
     await Future.delayed(Duration(milliseconds: 1500),() {});
-    Navigator.pushReplacementNamed(context,'/');
+    //Navigator.pushReplacementNamed(context,'/');
+    Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
   }
   @override
   Widget build(BuildContext context) {
@@ -48,4 +49,3 @@ class _splashState extends State<splash> {
 
   }
 }
-*/

@@ -42,9 +42,8 @@ class NavDrawer extends StatelessWidget {
             title: Text('Dashboard'),
             onTap: () => {
               if(isCurrent != '/')
-                {
-                  Navigator.pushReplacementNamed(context, '/')
-                }
+                 Navigator.of(context).popUntil(ModalRoute.withName('/'))
+                // Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false)
               else
                 Navigator.pop(context)
             },
@@ -58,8 +57,10 @@ class NavDrawer extends StatelessWidget {
             else if(isCurrent == '/tracking')
               Navigator.pop(context)
               else
-                Navigator.pushReplacementNamed(context, '/tracking')
+                {
 
+                  Navigator.pushReplacementNamed(context, '/tracking')
+                }
          },
     ),
           ListTile(

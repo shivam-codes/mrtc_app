@@ -31,13 +31,10 @@ class _trackingState extends State<tracking> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-    onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
-
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    },
+        onTap: () {
+          FocusManager.instance.primaryFocus!.unfocus();
+          new TextEditingController().clear();
+        },
         child:Scaffold(
       drawer: NavDrawer(route: route,),
       appBar: AppBar(

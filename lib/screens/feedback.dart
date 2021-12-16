@@ -39,13 +39,10 @@ class _feedbackState extends State<feedback> {
     var left = width/15;
     return GestureDetector(
         onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
-
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    },
-    child:Scaffold(
+          FocusManager.instance.primaryFocus!.unfocus();
+          new TextEditingController().clear();
+        },
+        child:Scaffold(
         drawer: NavDrawer(route: '/feedback',),
         appBar: AppBar(
           centerTitle: true,

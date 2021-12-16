@@ -55,16 +55,11 @@ class _claimState extends State<claim> {
     var left = width/19;
     var top = 6.0;
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        setState(() {
-          show_suffix = false;
-        });
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
+        onTap: () {
+      FocusManager.instance.primaryFocus!.unfocus();
+      new TextEditingController().clear();
+    },
+    child:Scaffold(
           drawer: NavDrawer(route: '/claim',),
           appBar: AppBar(
             centerTitle: true,
@@ -246,7 +241,7 @@ class _claimState extends State<claim> {
                                   controller: _invoicenocontroller,
                                   minLines: 1,
                                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.]'))],
+                                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                   decoration: InputDecoration(
                                       labelText: "Enter Invoice number",
                                       border: OutlineInputBorder(
@@ -414,7 +409,9 @@ class _claimState extends State<claim> {
                           remarkcontroller.clear();
                           phonecontroller.clear();
                           _claimcontroller.clear();
-
+                          setState(() {
+                            _enabled = false;
+                          });
                           //Navigator.pop(context);
                         }
                       }
@@ -445,7 +442,7 @@ Widget _savemessage(BuildContext context, String token)
   return AlertDialog(
     backgroundColor: Color(0xffffe6e6),
     title: Text('Sorry for the inconvenience.\n We will get back to you.', style: TextStyle(color: Colors.red, fontSize: 17),),
-    content: Text('Your token no. is ${token}', style: TextStyle(color: Colors.red, fontSize: 17)),
+    content: Text('Your token no. is ${token}', style: TextStyle(color: Colors.red, fontSize: 17),textAlign: TextAlign.center,),
     actions: <Widget>[
       new TextButton(onPressed: () {
         Navigator.of(context).pop();

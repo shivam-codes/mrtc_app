@@ -25,8 +25,8 @@ void main() {
    Widget build(BuildContext context) {
      return MaterialApp(
        debugShowCheckedModeBanner: false,
-        // builder: (context, child) => BaseWidget(child: child!),
-         initialRoute: '/',
+         //builder: (context, child) => BaseWidget(child: child!),
+         initialRoute: '/splash',
          routes: {
          '/' : (context) => Dashboard(),
            '/tracking' : (context) => tracking(),
@@ -35,7 +35,7 @@ void main() {
            '/complain' : (context) => complain(),
            '/feedback' : (context) => feedback(),
            '/job' : (context) => job(),
-           //'/splash' : (context) => splash(),
+           '/splash' : (context) => splash(),
            '/aboutus' : (context) => aboutus(),
            '/settings' : (context) => settings(),
            '/feedback' : (context) => feedback(),
@@ -46,3 +46,4 @@ void main() {
      );
    }
  }
+
